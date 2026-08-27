@@ -1,0 +1,578 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>Quiz Result | Adaptive Quiz Generator</title>
+
+    <!-- Bootstrap -->
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+          rel="stylesheet">
+
+    <!-- Font Awesome -->
+
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
+    <!-- Result CSS -->
+<link rel="stylesheet"
+href="{{ url_for('static', filename='css/result.css') }}">
+</head>
+
+<body>
+
+<div class="dashboard">
+
+    <!-- ============================= -->
+    <!-- Sidebar -->
+    <!-- ============================= -->
+
+    <aside class="sidebar">
+
+        <div>
+
+            <!-- Logo -->
+
+            <div class="logo">
+
+                <i class="fas fa-graduation-cap"></i>
+
+                <div>
+
+                    <h3>Adaptive Quiz</h3>
+
+                    <span>Generator</span>
+
+                </div>
+
+            </div>
+
+            <!-- Sidebar Menu -->
+
+            <ul class="menu">
+
+                <li>
+                    <a href="{{ url_for('dashboard') }}">
+                        <i class="fas fa-home"></i>
+                        Dashboard
+                    </a>
+                </li>
+
+                <li>
+                    <a href="{{ url_for('subjects') }}">
+                        <i class="fas fa-book-open"></i>
+                        Subjects
+                    </a>
+                </li>
+
+                <li>
+                    <a href="{{ url_for('assessment') }}">
+                        <i class="fas fa-brain"></i>
+                        Assessment
+                    </a>
+                </li>
+
+                <li>
+                    <a href="{{ url_for('quiz', subject_id=1) }}">
+                        <i class="fas fa-clipboard-list"></i>
+                        Quizzes
+                    </a>
+                </li>
+
+                <li>
+                    <a href="{{ url_for('leaderboard') }}">
+                        <i class="fas fa-trophy"></i>
+                        Leaderboard
+                    </a>
+                </li>
+
+                <li class="active">
+                    <a href="{{ url_for('result') }}">
+                        <i class="fas fa-chart-bar"></i>
+                        Results
+                    </a>
+                </li>
+
+                <li>
+                    <a href="{{ url_for('profile') }}">
+                        <i class="fas fa-user"></i>
+                        Profile
+                    </a>
+                </li>
+
+                <li>
+                    <a href="#" id="logoutBtn">
+                        <i class="fas fa-sign-out-alt"></i>
+                        Logout
+                    </a>
+                </li>
+
+            </ul>
+
+        </div>
+
+        <div class="sidebar-quote">
+
+            <i class="fas fa-quote-left"></i>
+
+            <span>
+
+                "The beautiful thing about learning is nobody can take it away from you."
+
+            </span>
+
+        </div>
+
+    </aside>
+
+    <!-- ============================= -->
+    <!-- Main Content -->
+    <!-- ============================= -->
+
+    <main class="main-content">
+
+        <!-- Top Bar -->
+
+        <div class="topbar">
+
+            <div>
+
+                <h2>Quiz Result</h2>
+
+                <p>
+                    AI Performance Analysis
+                </p>
+
+            </div>
+
+            <div class="user-box">
+
+                <i class="fas fa-user-circle"></i>
+
+                <span>
+
+                    {{ session['name'] }}
+
+                </span>
+
+            </div>
+
+        </div>
+
+        <!-- ============================= -->
+        <!-- Hero -->
+        <!-- ============================= -->
+
+        <section class="hero-result">
+
+            <div class="hero-left">
+
+                <span class="hero-tag">
+
+                    <i class="fas fa-robot"></i>
+
+                    AI Adaptive Evaluation
+
+                </span>
+
+                <h1>
+
+                    Congratulations 🎉
+
+                </h1>
+
+                <p>
+
+                    Your quiz has been evaluated successfully.
+
+                    Below is your complete AI-powered performance report,
+                    learning analysis and personalized recommendations.
+
+                </p>
+
+            </div>
+
+            <div class="hero-right">
+
+                <div class="score-circle">
+
+                    <h1 id="percentageCounter">
+
+                        {{ percentage }}%
+
+                    </h1>
+
+                    <span>
+
+                        Overall Score
+
+                    </span>
+
+                </div>
+
+            </div>
+
+        </section>
+
+        <!-- =================================== -->
+        <!-- Statistics Cards -->
+        <!-- Part 2 -->
+        <!-- =================================== -->
+                 <div class="cards-grid">
+
+            <!-- Score Card -->
+
+            <div class="result-card">
+
+                <div class="card-icon blue">
+
+                    <i class="fas fa-check-circle"></i>
+
+                </div>
+
+                <h4>Quiz Score</h4>
+
+                <h2>{{ score }}/{{ total }}</h2>
+
+                <p>Correct Answers</p>
+
+            </div>
+
+            <!-- Subject -->
+
+            <div class="result-card">
+
+                <div class="card-icon purple">
+
+                    <i class="fas fa-book-open"></i>
+
+                </div>
+
+                <h4>Subject</h4>
+
+                <h2>{{ subject_name }}</h2>
+
+                <p>Quiz Subject</p>
+
+            </div>
+
+            <!-- Difficulty -->
+
+            <div class="result-card">
+
+                <div class="card-icon orange">
+
+                    <i class="fas fa-layer-group"></i>
+
+                </div>
+
+                <h4>Difficulty</h4>
+
+                <h2>{{ difficulty }}</h2>
+
+                <p>Current Level</p>
+
+            </div>
+
+            <!-- Time -->
+
+            <div class="result-card">
+
+                <div class="card-icon green">
+
+                    <i class="fas fa-clock"></i>
+
+                </div>
+
+                <h4>Time Taken</h4>
+
+                <h2>{{ time_taken }} sec</h2>
+
+                <p>Completion Time</p>
+
+            </div>
+
+        </div>
+
+
+        <!-- ===================================== -->
+        <!-- AI Analysis -->
+        <!-- ===================================== -->
+
+        <div class="analysis-section">
+
+            <div class="analysis-card">
+
+                <div class="analysis-header">
+
+                    <h3>
+
+                        <i class="fas fa-brain"></i>
+
+                        AI Performance Analysis
+
+                    </h3>
+
+                </div>
+
+                <div class="analysis-body">
+
+                    <div class="level-box">
+
+                        <div class="old-level">
+
+                            <span>Previous Level</span>
+
+                            <h2>
+
+                                {{ old_level }}
+
+                            </h2>
+
+                        </div>
+
+                        <div class="arrow-box">
+
+                            <i class="fas fa-arrow-right"></i>
+
+                        </div>
+
+                        <div class="new-level">
+
+                            <span>Current Level</span>
+
+                            <h2>
+
+                                {{ new_level }}
+
+                            </h2>
+
+                        </div>
+
+                    </div>
+
+                    <div class="progress-area">
+
+                        <div class="progress-title">
+
+                            <span>Performance</span>
+
+                            <span>{{ percentage }}%</span>
+
+                        </div>
+
+                        <div class="progress">
+
+                            <div class="progress-bar"
+
+                                 id="progressBar"
+
+                                 style="width: {{ percentage }}%;">
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <!-- ===================================== -->
+        <!-- Recommendations -->
+        <!-- Part 3 -->
+        <!-- ===================================== -->
+                 <!-- ===================================== -->
+        <!-- AI Recommendation -->
+        <!-- ===================================== -->
+
+        <div class="recommendation-grid">
+
+            <!-- Recommendation Card -->
+
+            <div class="recommendation-card">
+
+                <div class="section-title">
+
+                    <i class="fas fa-lightbulb"></i>
+
+                    <h3>AI Recommendation</h3>
+
+                </div>
+
+                {% if percentage >= 90 %}
+
+                <div class="recommendation success">
+
+                    <i class="fas fa-award"></i>
+
+                    <div>
+
+                        <h4>Excellent Performance 🎉</h4>
+
+                        <p>
+
+                            Outstanding work! Continue solving Advanced level
+                            quizzes to strengthen your concepts.
+
+                        </p>
+
+                    </div>
+
+                </div>
+
+                {% elif percentage >= 70 %}
+
+                <div class="recommendation warning">
+
+                    <i class="fas fa-chart-line"></i>
+
+                    <div>
+
+                        <h4>Good Progress 📈</h4>
+
+                        <p>
+
+                            You're performing well. Practice more quizzes to
+                            improve consistency and accuracy.
+
+                        </p>
+
+                    </div>
+
+                </div>
+
+                {% else %}
+
+                <div class="recommendation danger">
+
+                    <i class="fas fa-book-reader"></i>
+
+                    <div>
+
+                        <h4>Needs Improvement 📚</h4>
+
+                        <p>
+
+                            Revise your concepts and attempt another quiz.
+                            Consistent practice will improve your level.
+
+                        </p>
+
+                    </div>
+
+                </div>
+
+                {% endif %}
+
+            </div>
+
+            <!-- Performance Summary -->
+
+            <div class="summary-card">
+
+                <div class="section-title">
+
+                    <i class="fas fa-chart-pie"></i>
+
+                    <h3>Performance Summary</h3>
+
+                </div>
+
+                <div class="summary-item">
+
+                    <span>Assessment Score</span>
+
+                    <strong>{{ assessment_score }}</strong>
+
+                </div>
+
+                <div class="summary-item">
+
+                    <span>Average Performance</span>
+
+                    <strong>{{ average_percentage }}%</strong>
+
+                </div>
+
+                <div class="summary-item">
+
+                    <span>Quiz Percentage</span>
+
+                    <strong>{{ percentage }}%</strong>
+
+                </div>
+
+                <div class="summary-item">
+
+                    <span>Current AI Level</span>
+
+                    <strong>{{ new_level }}</strong>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <!-- ===================================== -->
+        <!-- Action Buttons -->
+        <!-- ===================================== -->
+
+        <div class="action-buttons">
+
+            <a href="{{ url_for('dashboard') }}"
+               class="btn btn-primary">
+
+                <i class="fas fa-home"></i>
+
+                Dashboard
+
+            </a>
+
+            <a href="{{ url_for('subjects') }}"
+               class="btn btn-success">
+
+                <i class="fas fa-book-open"></i>
+
+                Next Quiz
+
+            </a>
+
+            <a href="{{ url_for('leaderboard') }}"
+               class="btn btn-warning">
+
+                <i class="fas fa-trophy"></i>
+
+                Leaderboard
+
+            </a>
+
+        </div>
+
+    </main>
+
+</div>
+
+<!-- Bootstrap -->
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
+<!-- Result JS -->
+
+<script src="{{ url_for('static', filename='js/result.js') }}"></script>
+
+</body>
+
+</html>

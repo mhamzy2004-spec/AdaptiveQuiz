@@ -1,0 +1,507 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Student Profile</title>
+
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='css/profile.css') }}">
+
+</head>
+
+<body>
+
+<div class="dashboard">
+
+ <!-- ================= Sidebar ================= -->
+
+<aside class="sidebar">
+
+    <div>
+
+        <!-- Logo -->
+
+        <div class="logo">
+
+            <i class="fas fa-graduation-cap"></i>
+
+            <div>
+                <h3>Adaptive Quiz</h3>
+                <span>Generator</span>
+            </div>
+
+        </div>
+
+        <!-- Menu -->
+
+        <ul class="menu">
+
+            <li>
+                <a href="{{ url_for('dashboard') }}">
+                    <i class="fas fa-home"></i>
+                    Dashboard
+                </a>
+            </li>
+
+            <li>
+                <a href="{{ url_for('subjects') }}">
+                    <i class="fas fa-book-open"></i>
+                    Subjects
+                </a>
+            </li>
+
+            <li>
+                <a href="{{ url_for('assessment') }}">
+                    <i class="fas fa-brain"></i>
+                    Assessment
+                </a>
+            </li>
+
+            <li>
+                <a href="{{ url_for('quiz', subject_id=1) }}">
+                    <i class="fas fa-clipboard-list"></i>
+                    Quiz
+                </a>
+            </li>
+
+            <li>
+                <a href="{{ url_for('leaderboard') }}">
+                    <i class="fas fa-trophy"></i>
+                    Leaderboard
+                </a>
+            </li>
+
+            <li>
+                <a href="{{ url_for('result') }}">
+                    <i class="fas fa-chart-bar"></i>
+                    Results
+                </a>
+            </li>
+
+            <!-- Active Page -->
+
+            <li class="active">
+                <a href="{{ url_for('profile') }}">
+                    <i class="fas fa-user"></i>
+                    Profile
+                </a>
+            </li>
+
+            <!-- Logout -->
+
+            <li>
+                <a href="#" id="logoutBtn">
+                    <i class="fas fa-sign-out-alt"></i>
+                    Logout
+                </a>
+            </li>
+
+        </ul>
+
+    </div>
+
+    <!-- Quote -->
+
+    <div class="sidebar-quote">
+
+        <i class="fas fa-quote-left"></i>
+
+        <span>
+            "Success is the sum of small efforts repeated every day."
+        </span>
+
+    </div>
+
+</aside>
+
+<!-- ==========================
+     Logout Confirmation Modal
+========================== -->
+
+<div class="logout-modal" id="logoutModal">
+
+    <div class="logout-box">
+
+        <div class="logout-icon">
+            <i class="fas fa-sign-out-alt"></i>
+        </div>
+
+        <h2>Logout</h2>
+
+        <p>
+            Are you sure you want to logout from your account?
+        </p>
+
+        <div class="logout-buttons">
+
+            <button class="cancel-btn" id="cancelLogout">
+                Cancel
+            </button>
+
+            <a href="{{ url_for('logout') }}" class="confirm-btn">
+                Logout
+            </a>
+
+        </div>
+
+    </div>
+
+</div>
+
+    <!-- ================= Main Content ================= -->
+
+    <main class="main-content">
+
+        <!-- Topbar -->
+
+        <div class="topbar">
+
+            <div class="search-box">
+
+                <i class="fas fa-search"></i>
+
+                <input type="text"
+                       placeholder="Search...">
+
+            </div>
+
+            <div class="profile-top">
+
+                <img src="{{ url_for('static', filename='images/profile.svg') }}">
+
+                <div>
+
+                    <h4>{{ name }}</h4>
+
+                    <span>Student</span>
+
+                </div>
+
+            </div>
+
+        </div>
+
+        <!-- Page Header -->
+
+        <div class="page-header">
+
+            <h1>My Profile 👤</h1>
+
+            <p>
+                View and manage your account information.
+            </p>
+
+        </div>
+
+      <!-- ================= Profile Card ================= -->
+
+<div class="profile-card">
+
+    <div class="profile-image">
+
+        <img src="{{ url_for('static', filename='images/profile.svg') }}">
+
+    </div>
+
+    <div class="profile-info">
+
+        <h2>{{ name }}</h2>
+
+        <p>{{ email }}</p>
+
+        <span class="level">
+
+            {{ overall_level }}
+
+        </span>
+
+        <div class="assessment-badge">
+
+            <i class="fas fa-brain"></i>
+
+            Assessment Score :
+            <strong>{{ assessment_score }}</strong>
+
+        </div>
+
+    </div>
+
+</div>
+                <!-- ================= Profile Details ================= -->
+
+<div class="profile-grid">
+
+    <!-- Personal Information -->
+
+    <div class="info-card">
+
+        <div class="card-title">
+
+            <i class="fas fa-user-circle"></i>
+
+            <h3>Personal Information</h3>
+
+        </div>
+
+        <div class="info-row">
+
+            <span>Full Name</span>
+
+            <strong>{{ name }}</strong>
+
+        </div>
+
+        <div class="info-row">
+
+            <span>Email Address</span>
+
+            <strong>{{ email }}</strong>
+
+        </div>
+
+        <div class="info-row">
+
+            <span>Overall AI Level</span>
+
+            <strong>{{ overall_level }}</strong>
+
+        </div>
+
+        <div class="info-row">
+
+            <span>Assessment Score</span>
+
+            <strong>{{ assessment_score }}</strong>
+
+        </div>
+
+        <div class="info-row">
+
+            <span>Account Status</span>
+
+            <strong class="active-status">
+
+                Active
+
+            </strong>
+
+        </div>
+
+    </div>
+
+            <!-- Quiz Statistics -->
+
+            <div class="info-card">
+
+                <div class="card-title">
+                    <i class="fas fa-chart-line"></i>
+                    <h3>Quiz Statistics</h3>
+                </div>
+
+                <div class="stats-container">
+
+                    <div class="mini-stat">
+                        <h2>{{ quizzes }}</h2>
+                        <p>Total Quizzes</p>
+                    </div>
+
+                    <div class="mini-stat">
+                        <h2>{{ average }}%</h2>
+                        <p>Average Score</p>
+                    </div>
+
+                    <div class="mini-stat">
+                        <h2>#{{ rank }}</h2>
+                        <p>Leaderboard Rank</p>
+                    </div>
+
+                    <div class="mini-stat">
+                        <h2>{{ badge }}</h2>
+                        <p>Current Badge</p>
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <!-- ================= Performance Summary ================= -->
+
+        <div class="performance-card">
+
+            <div class="card-title">
+                <i class="fas fa-award"></i>
+                <h3>Performance Summary</h3>
+            </div>
+
+            <div class="summary-grid">
+
+                <div class="summary-box">
+                    <i class="fas fa-check-circle"></i>
+                    <h4>{{ correct }}</h4>
+                    <p>Correct Answers</p>
+                </div>
+
+                <div class="summary-box">
+                    <i class="fas fa-times-circle"></i>
+                    <h4>{{ wrong }}</h4>
+                    <p>Wrong Answers</p>
+                </div>
+
+                <div class="summary-box">
+                    <i class="fas fa-stopwatch"></i>
+                    <h4>{{ time_taken }}</h4>
+                    <p>Time Spent</p>
+                </div>
+
+                <div class="summary-box">
+                    <i class="fas fa-star"></i>
+                    <h4>{{ percentage }}%</h4>
+                    <p>Best Performance</p>
+                </div>
+
+            </div>
+
+        </div>
+                <!-- ================= Recent Quiz History ================= -->
+
+        <div class="history-card">
+
+            <div class="card-title">
+                <i class="fas fa-history"></i>
+                <h3>Recent Quiz History</h3>
+            </div>
+
+            <table class="history-table">
+
+                <thead>
+
+                    <tr>
+                        <th>Subject</th>
+                        <th>Score</th>
+                        <th>Level</th>
+                        <th>Date</th>
+                    </tr>
+
+                </thead>
+
+                <tbody>
+
+                    {% if recent_quizzes %}
+
+                        {% for quiz in recent_quizzes %}
+
+                        <tr>
+
+                            <td>{{ quiz.subject_name }}</td>
+
+                            <td>
+                                {{ quiz.score }}/{{ quiz.total_questions }}
+                            </td>
+
+                            <td>
+                                <span class="level-badge">
+                                    {{ quiz.difficulty }}
+                                </span>
+                            </td>
+
+                            <td>
+                                {{ quiz.attempt_date.strftime('%d-%m-%Y') }}
+                            </td>
+
+                        </tr>
+
+                        {% endfor %}
+
+                    {% else %}
+
+                        <tr>
+
+                            <td colspan="4" style="text-align:center;">
+                                No Quiz Attempted Yet
+                            </td>
+
+                        </tr>
+
+                    {% endif %}
+
+                </tbody>
+
+            </table>
+
+        </div>
+
+
+        <!-- ================= Achievement Section ================= -->
+
+        <div class="achievement-card">
+
+            <div class="card-title">
+                <i class="fas fa-medal"></i>
+                <h3>Achievements</h3>
+            </div>
+
+            <div class="achievement-grid">
+
+                <div class="achievement-box">
+
+                    <i class="fas fa-award"></i>
+
+                    <h4>{{ badge }}</h4>
+
+                    <p>Your Current Badge</p>
+
+                </div>
+
+                <div class="achievement-box">
+
+                    <i class="fas fa-chart-line"></i>
+
+                    <h4>{{ percentage }}%</h4>
+
+                    <p>Highest Percentage</p>
+
+                </div>
+
+                <div class="achievement-box">
+
+                    <i class="fas fa-fire"></i>
+
+                    <h4>{{ quizzes }}</h4>
+
+                    <p>Quiz Attempts</p>
+
+                </div>
+
+                <div class="achievement-box">
+
+                    <i class="fas fa-trophy"></i>
+
+                    <h4>#{{ rank }}</h4>
+
+                    <p>Leaderboard Rank</p>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+    </main>
+
+</div>
+
+<script src="{{ url_for('static', filename='js/profile.js') }}"></script>
+
+</body>
+</html>

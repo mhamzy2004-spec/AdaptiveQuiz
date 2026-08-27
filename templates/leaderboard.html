@@ -1,0 +1,576 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Leaderboard</title>
+
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='css/leaderboard.css') }}">
+
+</head>
+
+<body>
+
+<div class="dashboard">
+<aside class="sidebar">
+
+    <div>
+
+        <!-- Logo -->
+
+        <div class="logo">
+
+            <i class="fas fa-graduation-cap"></i>
+
+            <div>
+
+                <h3>Adaptive Quiz</h3>
+
+                <span>Generator</span>
+
+            </div>
+
+        </div>
+
+        <!-- Menu -->
+
+        <ul class="menu">
+
+            <li>
+                <a href="{{ url_for('dashboard') }}">
+                    <i class="fas fa-home"></i>
+                    Dashboard
+                </a>
+            </li>
+
+            <li>
+                <a href="{{ url_for('subjects') }}">
+                    <i class="fas fa-book-open"></i>
+                    Subjects
+                </a>
+            </li>
+
+            <li>
+                <a href="{{ url_for('assessment') }}">
+                    <i class="fas fa-brain"></i>
+                    Assessment
+                </a>
+            </li>
+
+            <li>
+                <a href="{{ url_for('quiz', subject_id=1) }}">
+                    <i class="fas fa-clipboard-list"></i>
+                    Quizzes
+                </a>
+            </li>
+
+            <!-- Active Page -->
+
+            <li class="active">
+                <a href="{{ url_for('leaderboard') }}">
+                    <i class="fas fa-trophy"></i>
+                    Leaderboard
+                </a>
+            </li>
+
+            <li>
+                <a href="{{ url_for('result') }}">
+                    <i class="fas fa-chart-bar"></i>
+                    Results
+                </a>
+            </li>
+
+            <li>
+                <a href="{{ url_for('profile') }}">
+                    <i class="fas fa-user"></i>
+                    Profile
+                </a>
+            </li>
+
+            <!-- Logout -->
+
+            <li>
+                <a href="#" id="logoutBtn">
+                    <i class="fas fa-sign-out-alt"></i>
+                    Logout
+                </a>
+            </li>
+
+        </ul>
+
+    </div>
+
+    <!-- Quote -->
+
+    <div class="sidebar-quote">
+
+        <i class="fas fa-quote-left me-1"></i>
+
+        <span>
+
+            "The beautiful thing about learning is nobody can take it away from you."
+
+        </span>
+
+    </div>
+
+</aside>
+
+<!-- ==========================
+     Logout Confirmation Modal
+========================== -->
+
+<div class="logout-modal" id="logoutModal">
+
+    <div class="logout-box">
+
+        <div class="logout-icon">
+
+            <i class="fas fa-sign-out-alt"></i>
+
+        </div>
+
+        <h2>Logout</h2>
+
+        <p>
+
+            Are you sure you want to logout from your account?
+
+        </p>
+
+        <div class="logout-buttons">
+
+            <button class="cancel-btn" id="cancelLogout">
+
+                Cancel
+
+            </button>
+
+            <a href="{{ url_for('logout') }}" class="confirm-btn">
+
+                Logout
+
+            </a>
+
+        </div>
+
+    </div>
+
+</div>
+
+    <!-- ================= Main ================= -->
+
+    <main class="main-content">
+
+        <!-- Top Bar -->
+
+        <div class="topbar">
+
+            <div class="search-box">
+
+                <i class="fas fa-search"></i>
+
+                <input
+                    type="text"
+                    id="searchStudent"
+                    placeholder="Search Student...">
+
+            </div>
+
+            <div class="profile">
+
+                <img src="{{ url_for('static', filename='images/profile.svg') }}">
+
+                <div>
+
+                    <h4>{{ name }}</h4>
+
+                    <p>{{ level }}</p>
+
+                </div>
+
+            </div>
+
+        </div>
+
+        <!-- Page Title -->
+
+       <div class="page-header-with-illustration">
+
+            <div class="header-text-side">
+                <h1>
+                    🏆 Leaderboard
+                </h1>
+                <p>
+                    Track top performing students, analyze competition, and keep pushing your boundaries!
+                </p>
+                <div class="leaderboard-tag">
+                    <i class="fas fa-bolt"></i> Live Standings
+                </div>
+            </div>
+
+            <div class="header-illustration-side">
+                <img src="{{ url_for('static', filename='images/result_share.svg') }}" alt="Leaderboard Winners Illustration">
+            </div>
+
+        </div>
+        <!-- ================= Top 3 Winners ================= -->
+
+<div class="top-three-container">
+
+    <!-- Second -->
+
+    <div class="winner-card silver">
+
+        <div class="medal">
+            🥈
+        </div>
+
+        <img src="{{ url_for('static', filename='images/profile.svg') }}">
+
+        <h3>{{ second_name if second_name else "Student 2" }}</h3>
+
+        <p>{{ second_score if second_score else "90%" }}</p>
+
+        <span>2nd Position</span>
+
+    </div>
+
+
+    <!-- First -->
+
+    <div class="winner-card gold">
+
+        <div class="crown">
+            👑
+        </div>
+
+        <div class="medal">
+            🥇
+        </div>
+
+        <img src="{{ url_for('static', filename='images/profile.svg') }}">
+
+        <h2>{{ first_name if first_name else "Student 1" }}</h2>
+
+        <p>{{ first_score if first_score else "96%" }}</p>
+
+        <span>Champion</span>
+
+    </div>
+
+
+    <!-- Third -->
+
+    <div class="winner-card bronze">
+
+        <div class="medal">
+            🥉
+        </div>
+
+        <img src="{{ url_for('static', filename='images/profile.svg') }}">
+
+        <h3>{{ third_name if third_name else "Student 3" }}</h3>
+
+        <p>{{ third_score if third_score else "88%" }}</p>
+
+        <span>3rd Position</span>
+
+    </div>
+
+</div>
+
+
+<!-- ================= Statistics ================= -->
+
+<div class="stats-grid">
+
+    <div class="stat-card">
+
+        <i class="fas fa-users"></i>
+
+        <h3>{{ total_students if total_students else 120 }}</h3>
+
+        <p>Total Students</p>
+
+    </div>
+
+
+    <div class="stat-card">
+
+        <i class="fas fa-clipboard-check"></i>
+
+        <h3>{{ total_attempts if total_attempts else 560 }}</h3>
+
+        <p>Total Quizzes</p>
+
+    </div>
+
+
+    <div class="stat-card">
+
+        <i class="fas fa-chart-line"></i>
+
+        <h3>{{ highest_score if highest_score else "98%" }}</h3>
+
+        <p>Highest Score</p>
+
+    </div>
+
+
+    <div class="stat-card">
+
+        <i class="fas fa-ranking-star"></i>
+
+        <h3>#{{ my_rank if my_rank else "-" }}</h3>
+
+        <p>Your Rank</p>
+
+    </div>
+
+</div> 
+<!-- ================= Leaderboard Table ================= -->
+
+<div class="leaderboard-section">
+
+    <div class="table-header">
+
+        <h2>
+            <i class="fas fa-trophy"></i>
+            Overall Rankings
+        </h2>
+
+        <button class="refresh-btn">
+            <i class="fas fa-rotate"></i>
+            Refresh
+        </button>
+
+    </div>
+
+    <div class="table-responsive">
+
+        <table class="leaderboard-table">
+
+            <thead>
+
+                <tr>
+
+                    <th>Rank</th>
+
+                    <th>Student</th>
+
+                    <th>Level</th>
+
+                    <th>Quizzes</th>
+
+                    <th>Average</th>
+
+                    <th>Badge</th>
+
+                </tr>
+
+            </thead>
+
+            <tbody>
+
+                {% if leaderboard %}
+
+                    {% for student in leaderboard %}
+
+                    <tr {% if student.user_id == session['user_id'] %}class="current-user"{% endif %}>
+
+                        <td>
+
+                            {% if loop.index == 1 %}
+                                🥇
+                            {% elif loop.index == 2 %}
+                                🥈
+                            {% elif loop.index == 3 %}
+                                🥉
+                            {% else %}
+                                {{ loop.index }}
+                            {% endif %}
+
+                        </td>
+
+                        <td>
+
+                            <div class="student-info">
+
+                                <img src="{{ url_for('static', filename='images/profile.svg') }}">
+
+                                <span>{{ student.full_name }}</span>
+
+                            </div>
+
+                        </td>
+
+                        <td>
+
+                            <span class="level {{ student.level|lower }}">
+                                {{ student.level }}
+                            </span>
+
+                        </td>
+
+                        <td>
+
+                            {{ student.total_quizzes }}
+
+                        </td>
+
+                        <td>
+
+                            {{ student.average_score }}%
+
+                        </td>
+
+                        <td>
+
+                            {% if student.average_score >= 90 %}
+                                🏆 Master
+                            {% elif student.average_score >= 80 %}
+                                ⭐ Expert
+                            {% elif student.average_score >= 70 %}
+                                🎯 Skilled
+                            {% else %}
+                                📚 Learner
+                            {% endif %}
+
+                        </td>
+
+                    </tr>
+
+                    {% endfor %}
+
+                {% else %}
+
+                <tr>
+
+                    <td colspan="6" style="text-align:center;padding:40px;">
+
+                        <i class="fas fa-trophy fa-3x"></i>
+
+                        <br><br>
+
+                        No leaderboard data available.
+
+                    </td>
+
+                </tr>
+
+                {% endif %}
+
+            </tbody>
+
+        </table>
+
+    </div>
+
+</div>
+<!-- ================= Performance Section ================= -->
+
+<div class="performance-grid">
+
+    <div class="performance-card">
+
+        <h3>
+            <i class="fas fa-chart-line"></i>
+            Performance Overview
+        </h3>
+
+        <canvas id="leaderboardChart"></canvas>
+
+    </div>
+
+    <div class="performance-card">
+
+        <h3>
+            <i class="fas fa-medal"></i>
+            Achievements
+        </h3>
+
+        <div class="achievement-list">
+
+            <div class="achievement-item">
+
+                <i class="fas fa-trophy gold"></i>
+
+                <div>
+
+                    <h4>Quiz Champion</h4>
+
+                    <p>Top performer of the week.</p>
+
+                </div>
+
+            </div>
+
+            <div class="achievement-item">
+
+                <i class="fas fa-fire orange"></i>
+
+                <div>
+
+                    <h4>Consistency</h4>
+
+                    <p>Completed quizzes regularly.</p>
+
+                </div>
+
+            </div>
+
+            <div class="achievement-item">
+
+                <i class="fas fa-star blue"></i>
+
+                <div>
+
+                    <h4>Fast Learner</h4>
+
+                    <p>Maintained high average score.</p>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+<!-- ================= Footer ================= -->
+
+<footer class="footer">
+
+    <p>
+
+        © 2026 Adaptive Quiz Generator |
+        Designed by Team Adaptive Quiz
+
+    </p>
+
+</footer>
+
+</main>
+
+</div>
+
+<!-- ================= JS ================= -->
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+<script src="{{ url_for('static', filename='js/leaderboard.js') }}"></script>
+
+</body>
+
+</html>

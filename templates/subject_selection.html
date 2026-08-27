@@ -1,0 +1,460 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Select Subject</title>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
+    <link rel="stylesheet"
+        href="{{ url_for('static', filename='css/subject_selection.css') }}">
+
+</head>
+
+<body>
+
+<div class="dashboard">
+
+    <!-- ================= Sidebar ================= -->
+
+    <aside class="sidebar">
+
+        <div>
+
+            <div class="logo">
+
+                <i class="fas fa-graduation-cap"></i>
+
+                <div>
+
+                    <h3>Adaptive Quiz</h3>
+
+                    <span>Generator</span>
+
+                </div>
+
+            </div>
+
+            <ul class="menu">
+
+                <li>
+                    <a href="{{ url_for('dashboard') }}">
+                        <i class="fas fa-home"></i>
+                        Dashboard
+                    </a>
+                </li>
+
+                <li class="active">
+                    <a href="{{ url_for('subjects') }}">
+                        <i class="fas fa-book-open"></i>
+                        Subjects
+                    </a>
+                </li>
+
+                <li>
+                    <a href="{{ url_for('assessment') }}">
+                        <i class="fas fa-brain"></i>
+                        Assessment
+                    </a>
+                </li>
+
+              
+
+                <li>
+                    <a href="{{ url_for('leaderboard') }}">
+                        <i class="fas fa-trophy"></i>
+                        Leaderboard
+                    </a>
+                </li>
+
+                <li>
+                    <a href="{{ url_for('result') }}">
+                        <i class="fas fa-chart-bar"></i>
+                        Results
+                    </a>
+                </li>
+
+                <li>
+                    <a href="{{ url_for('profile') }}">
+                        <i class="fas fa-user"></i>
+                        Profile
+                    </a>
+                </li>
+
+                <li>
+                    <a href="#" id="logoutBtn">
+                        <i class="fas fa-sign-out-alt"></i>
+                        Logout
+                    </a>
+                </li>
+
+            </ul>
+
+        </div>
+
+        <div class="sidebar-quote">
+
+            <i class="fas fa-quote-left"></i>
+
+            <span>
+                "The beautiful thing about learning is nobody can take it away from you."
+            </span>
+
+        </div>
+
+    </aside>
+
+    <!-- ================= Main Content ================= -->
+
+    <main class="main-content">
+
+        <!-- Topbar -->
+
+        <div class="topbar">
+
+            <div class="search-box">
+
+                <i class="fas fa-search"></i>
+
+                <input type="text" placeholder="Search Subject...">
+
+            </div>
+
+            <div class="profile">
+
+                <img src="{{ url_for('static', filename='images/profile.svg') }}">
+
+                <div>
+
+                    <h5>{{ name }}</h5>
+
+                    <p>{{ level }}</p>
+
+                </div>
+
+            </div>
+
+        </div>
+                <!-- ================= Hero Section ================= -->
+
+        <section class="hero">
+
+            <div class="hero-text">
+
+                <h1>📚 Choose Your Subject</h1>
+
+                <p>
+
+                    Select a subject and start an adaptive quiz based on your
+                    current learning level.
+
+                </p>
+
+            </div>
+
+            <div class="hero-image">
+
+                <img src="{{ url_for('static', filename='images/open-book.svg') }}"
+                     alt="Student">
+
+            </div>
+
+        </section>
+
+        <!-- ================= Subjects ================= -->
+
+        <section class="subjects-section">
+
+            <div class="section-title">
+
+                <h2>Available Subjects</h2>
+
+                <p>
+
+                    Select any subject to begin your adaptive quiz.
+
+                </p>
+
+            </div>
+
+            <div class="subject-grid">
+
+                {% for subject in subjects %}
+
+                <div class="subject-card">
+
+                    <!-- Subject Icon -->
+
+                    {% if subject.subject_name=="OOP" %}
+
+                        <div class="subject-icon purple">
+                            <i class="fas fa-code"></i>
+                        </div>
+
+                    {% elif subject.subject_name=="DSA" %}
+
+                        <div class="subject-icon green">
+                            <i class="fas fa-project-diagram"></i>
+                        </div>
+
+                    {% elif subject.subject_name=="DBMS" %}
+
+                        <div class="subject-icon blue">
+                            <i class="fas fa-database"></i>
+                        </div>
+
+                    {% elif subject.subject_name=="OS" %}
+
+                        <div class="subject-icon orange">
+                            <i class="fas fa-desktop"></i>
+                        </div>
+
+                    {% elif subject.subject_name=="CN" %}
+
+                        <div class="subject-icon pink">
+                            <i class="fas fa-network-wired"></i>
+                        </div>
+
+                    {% elif subject.subject_name=="Python" %}
+
+                        <div class="subject-icon python">
+                            <i class="fab fa-python"></i>
+                        </div>
+
+                    {% elif subject.subject_name=="Java" %}
+
+                        <div class="subject-icon java">
+                            <i class="fab fa-java"></i>
+                        </div>
+
+                    {% else %}
+
+                        <div class="subject-icon purple">
+                            <i class="fas fa-book"></i>
+                        </div>
+
+                    {% endif %}
+
+                    <!-- Subject Name -->
+
+                    <h3>{{ subject.subject_name }}</h3>
+
+                    <!-- Description -->
+
+                    <p>
+
+                        {% if subject.description %}
+
+                            {{ subject.description }}
+
+                        {% else %}
+
+                            Adaptive Quiz Available
+
+                        {% endif %}
+
+                    </p>
+
+                    <!-- Difficulty Badge -->
+
+                    <span class="badge beginner">
+
+                        {{ level }}
+
+                    </span>
+
+                    <!-- Button -->
+
+                    <button class="btn start-btn"
+                        onclick="window.location.href='{{ url_for('quiz', subject_id=subject.subject_id) }}'">
+
+                        Start Quiz
+
+                        <i class="fas fa-arrow-right ms-2"></i>
+
+                    </button>
+
+                </div>
+
+                {% endfor %}
+
+            </div>
+
+        </section>
+                <!-- ================= Bottom Section ================= -->
+
+        <div class="row mt-5">
+
+            <!-- AI Recommendation -->
+
+            <div class="col-lg-8">
+
+                <div class="recommendation-card">
+
+                    <div class="recommendation-left">
+
+                        <div class="recommend-icon">
+
+                            <i class="fas fa-lightbulb"></i>
+
+                        </div>
+
+                        <div>
+
+                            <h3>AI Recommendation</h3>
+
+                            <p>
+
+                                Based on your current assessment level
+                                <strong>{{ level }}</strong>,
+                                we recommend starting with
+
+                                <strong>Object Oriented Programming</strong>
+
+                                to strengthen your programming fundamentals.
+
+                            </p>
+
+                        </div>
+
+                    </div>
+
+                    <button class="btn recommendation-btn"
+                        onclick="window.location.href='{{ url_for('quiz', subject_id=1) }}'">
+
+                        Start Recommended Quiz
+
+                    </button>
+
+                </div>
+
+            </div>
+
+            <!-- Overall Progress -->
+
+            <div class="col-lg-4">
+
+                <div class="progress-card">
+
+                    <h4>
+
+                        <i class="fas fa-chart-line"></i>
+
+                        Overall Progress
+
+                    </h4>
+
+                    <div class="progress-circle">
+
+                        <h2>68%</h2>
+
+                        <p>Completed</p>
+
+                    </div>
+
+                    <div class="mt-4">
+
+                        <p>
+
+                            <strong>Current Level :</strong>
+
+                            {{ level }}
+
+                        </p>
+
+                        <p>
+
+                            <strong>Completed Subjects :</strong>
+
+                            3 / {{ subjects|length }}
+
+                        </p>
+
+                        <p>
+
+                            <strong>Quiz Attempts :</strong>
+
+                            18
+
+                        </p>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+        <!-- ================= Footer ================= -->
+
+        <footer class="footer mt-5">
+
+            <p>
+
+                © 2026 Adaptive Quiz Generator |
+
+                Developed by Team Adaptive AI
+
+            </p>
+
+        </footer>
+
+    </main>
+
+</div>
+
+<!-- ================= Logout Modal ================= -->
+
+<div class="logout-modal" id="logoutModal">
+
+    <div class="logout-box">
+
+        <div class="logout-icon">
+
+            <i class="fas fa-sign-out-alt"></i>
+
+        </div>
+
+        <h2>Logout</h2>
+
+        <p>
+
+            Are you sure you want to logout from your account?
+
+        </p>
+
+        <div class="logout-buttons">
+
+            <button class="cancel-btn" id="cancelLogout">
+
+                Cancel
+
+            </button>
+
+            <a href="{{ url_for('logout') }}" class="confirm-btn">
+
+                Logout
+
+            </a>
+
+        </div>
+
+    </div>
+
+</div>
+
+<script src="{{ url_for('static', filename='js/subject_selection.js') }}"></script>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
+</body>
+
+</html>

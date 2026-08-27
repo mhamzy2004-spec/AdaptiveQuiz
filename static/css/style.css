@@ -1,0 +1,154 @@
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:'Segoe UI',sans-serif;
+}
+
+body{
+    min-height:100vh;
+    background:linear-gradient(135deg,#4F46E5,#06B6D4);
+    overflow-x:hidden;
+}
+
+.main-container{
+    min-height:100vh;
+}
+
+.left-panel{
+    color:white;
+    padding:50px;
+    position:relative;
+    overflow:hidden;
+}
+
+.logo{
+    font-size:30px;
+    font-weight:700;
+}
+
+.hero-title{
+    font-size:58px;
+    font-weight:800;
+    margin-top:50px;
+    line-height:1.1;
+}
+
+.hero-text{
+    margin-top:20px;
+    font-size:18px;
+    max-width:550px;
+    opacity:.95;
+}
+
+.student-img{
+    max-width:450px;
+    margin-top:20px;
+    filter:drop-shadow(0px 10px 20px rgba(0,0,0,.25));
+}
+
+.form-card{
+    width:460px;
+    background:white;
+    border-radius:25px;
+    padding:40px;
+    box-shadow:0 15px 40px rgba(0,0,0,.15);
+}
+
+.avatar{
+    width:90px;
+    height:90px;
+    border-radius:50%;
+    background:#EEF2FF;
+    color:#4F46E5;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    margin:auto;
+    font-size:35px;
+}
+
+.form-control{
+    height:55px;
+    border-radius:12px;
+}
+
+.form-control:focus{
+    border-color:#4F46E5;
+    box-shadow:0 0 10px rgba(79,70,229,.25);
+}
+
+.btn-theme{
+    background:linear-gradient(90deg,#4F46E5,#7C3AED);
+    color:white;
+    border:none;
+    height:55px;
+    border-radius:12px;
+    font-weight:600;
+    font-size:17px;
+}
+
+.btn-theme:hover{
+    color:white;
+}
+
+.icon{
+    position:absolute;
+    color:white;
+    opacity:.18;
+    animation:float 4s ease-in-out infinite;
+}
+
+.i1{top:120px;right:180px;font-size:45px;}
+.i2{top:260px;right:70px;font-size:40px;}
+.i3{bottom:180px;right:170px;font-size:50px;}
+.i4{bottom:100px;left:120px;font-size:40px;}
+.i5{top:450px;left:180px;font-size:45px;}
+.i6{top:180px;left:250px;font-size:35px;}
+
+@keyframes float{
+    0%{transform:translateY(0);}
+    50%{transform:translateY(-15px);}
+    100%{transform:translateY(0);}
+}
+
+.blob{
+    position:absolute;
+    border-radius:50%;
+    background:rgba(255,255,255,.08);
+}
+
+.b1{
+    width:200px;
+    height:200px;
+    top:-50px;
+    right:-50px;
+}
+
+.b2{
+    width:150px;
+    height:150px;
+    bottom:50px;
+    left:-40px;
+}
+
+@media(max-width:992px){
+
+.left-panel{
+    display:none;
+}
+
+.form-card{
+    width:95%;
+}
+
+}
+.input-group-text{
+    background:#EEF2FF;
+    border:none;
+    color:#4F46E5;
+}
+
+.input-group .form-control{
+    border-left:none;
+}

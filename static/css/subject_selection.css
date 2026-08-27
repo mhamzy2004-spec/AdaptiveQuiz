@@ -1,0 +1,1398 @@
+/* ==========================================================
+   GOOGLE FONT
+========================================================== */
+
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:'Poppins',sans-serif;
+}
+
+html{
+    scroll-behavior:smooth;
+}
+
+body{
+
+    background:#f5f7fb;
+
+    color:#2d3436;
+
+    overflow-x:hidden;
+
+    animation:fadePage .8s ease;
+
+}
+
+/* ==========================================================
+   PAGE ANIMATION
+========================================================== */
+
+@keyframes fadePage{
+
+    from{
+
+        opacity:0;
+
+        transform:translateY(20px);
+
+    }
+
+    to{
+
+        opacity:1;
+
+        transform:translateY(0);
+
+    }
+
+}
+
+/* ==========================================================
+   DASHBOARD LAYOUT
+========================================================== */
+
+.dashboard{
+
+    display:flex;
+
+    min-height:100vh;
+
+}
+/* ==========================================================
+   SIDEBAR
+========================================================== */
+.sidebar {
+    width: 270px;
+    background: linear-gradient(180deg, #4338CA, #312E81);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 25px 25px 35px 25px;
+    box-shadow: 0 0 25px rgba(0,0,0,.08);
+    position: sticky;
+    top: 0;
+    height: 100vh;
+    overflow-y: auto;
+    animation: sidebarOpen .8s ease;
+}
+
+/* Scrollbar styling for sidebar */
+.sidebar::-webkit-scrollbar {
+    width: 4px;
+}
+.sidebar::-webkit-scrollbar-thumb {
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: 10px;
+}
+
+@keyframes sidebarOpen {
+    from {
+        transform: translateX(-100%);
+    }
+    to {
+        transform: translateX(0);
+    }
+}
+
+/* ==========================================================
+   LOGO
+========================================================== */
+.logo {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    margin-bottom: 40px;
+    flex-shrink: 0;
+}
+
+.logo i {
+    font-size: 40px;
+    color: #fff;
+}
+
+.logo h3 {
+    font-size: 22px;
+    font-weight: 700;
+    color: #fff;
+}
+
+.logo span {
+    color: rgba(255, 255, 255, 0.8);
+    font-size: 14px;
+}
+
+/* ==========================================================
+   MENU
+========================================================== */
+.menu {
+    list-style: none;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.menu li {
+    margin-bottom: 8px;
+    border-radius: 12px;
+    transition: .3s;
+}
+
+.menu li:last-child {
+    margin-bottom: 20px;
+}
+
+.menu li a {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    text-decoration: none;
+    color: #fff !important;
+    padding: 14px 18px;
+    border-radius: 12px;
+    transition: .35s;
+    font-weight: 500;
+}
+
+.menu li a i {
+    width: 22px;
+    text-align: center;
+    font-size: 18px;
+}
+
+.menu li:hover, .menu .active {
+    background: rgba(255, 255, 255, 0.15);
+}
+
+.menu li:hover a {
+    transform: translateX(5px);
+    background: transparent;
+}
+
+/* ==========================================================
+   QUOTE
+========================================================== */
+
+.sidebar-quote{
+
+    background: rgba(255, 255, 255, 0.08); /* Adjusted card opacity layer */
+
+    color:#fff;
+
+    padding:20px;
+
+    border-radius:16px;
+
+    line-height:1.8;
+
+    font-size:14px;
+
+    margin-top:30px;
+
+    border-left: 4px solid #818CF8; /* Highlight accent bar */
+
+}
+
+.sidebar-quote i{
+
+    margin-right:6px;
+
+    color: #818CF8;
+
+}
+
+/* ==========================================================
+   MAIN CONTENT
+========================================================== */
+
+.main-content{
+
+    flex:1;
+
+    padding:35px;
+
+}
+/* ==========================================================
+   TOPBAR
+========================================================== */
+
+.topbar{
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+    margin-bottom:35px;
+
+    animation:slideDown .8s ease;
+
+}
+
+@keyframes slideDown{
+
+    from{
+
+        opacity:0;
+
+        transform:translateY(-25px);
+
+    }
+
+    to{
+
+        opacity:1;
+
+        transform:translateY(0);
+
+    }
+
+}
+
+/* ==========================================================
+   SEARCH BOX
+========================================================== */
+
+.search-box{
+
+    width:360px;
+
+    background:#ffffff;
+
+    display:flex;
+
+    align-items:center;
+
+    gap:12px;
+
+    padding:14px 18px;
+
+    border-radius:14px;
+
+    box-shadow:0 8px 20px rgba(0,0,0,.08);
+
+    transition:.35s;
+
+}
+
+.search-box:hover{
+
+    transform:translateY(-2px);
+
+    box-shadow:0 12px 25px rgba(67, 56, 202, .12);
+
+}
+
+.search-box i{
+
+    color:#4338CA; /* Matched accent */
+
+    font-size:18px;
+
+}
+
+.search-box input{
+
+    border:none;
+
+    outline:none;
+
+    width:100%;
+
+    font-size:15px;
+
+    background:transparent;
+
+}
+
+.search-box input::placeholder{
+
+    color:#999;
+
+}
+
+/* ==========================================================
+   PROFILE
+========================================================== */
+
+.profile{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:15px;
+
+    background:#ffffff;
+
+    padding:10px 16px;
+
+    border-radius:14px;
+
+    box-shadow:0 8px 20px rgba(0,0,0,.08);
+
+}
+
+.profile img{
+
+    width:55px;
+
+    height:55px;
+
+    border-radius:50%;
+
+    object-fit:cover;
+
+    border:3px solid #4338CA; /* Matched border accent */
+
+}
+
+.profile h5{
+
+    margin:0;
+
+    font-size:17px;
+
+    font-weight:600;
+
+    color:#2d3436;
+
+}
+
+.profile p{
+
+    margin:3px 0 0;
+
+    color:#777;
+
+    font-size:14px;
+
+}
+
+/* ==========================================================
+   HERO SECTION
+========================================================== */
+
+.hero{
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+    background:#ffffff;
+
+    border-radius:22px;
+
+    padding:40px;
+
+    margin-bottom:35px;
+
+    box-shadow:0 10px 30px rgba(0,0,0,.08);
+
+    overflow:hidden;
+
+}
+
+/* ==========================================================
+   HERO TEXT
+========================================================== */
+
+.hero-text{
+
+    width:58%;
+
+    animation:slideLeft .9s ease;
+
+}
+
+.hero-text h1{
+
+    font-size:42px;
+
+    font-weight:700;
+
+    color:#2d3436;
+
+    margin-bottom:18px;
+
+}
+
+.hero-text p{
+
+    color:#666;
+
+    font-size:17px;
+
+    line-height:1.9;
+
+}
+
+/* ==========================================================
+   HERO IMAGE
+========================================================== */
+
+.hero-image{
+
+    width:40%;
+
+    display:flex;
+
+    justify-content:center;
+
+    animation:slideRight .9s ease;
+
+}
+
+.hero-image img{
+
+    width:100%;
+
+    max-width:350px;
+
+    transition:.4s;
+
+}
+
+.hero-image img:hover{
+
+    transform:scale(1.05);
+
+}
+
+/* ==========================================================
+   HERO ANIMATION
+========================================================== */
+
+@keyframes slideLeft{
+
+    from{
+
+        opacity:0;
+
+        transform:translateX(-60px);
+
+    }
+
+    to{
+
+        opacity:1;
+
+        transform:translateX(0);
+
+    }
+
+}
+
+@keyframes slideRight{
+
+    from{
+
+        opacity:0;
+
+        transform:translateX(60px);
+
+    }
+
+    to{
+
+        opacity:1;
+
+        transform:translateX(0);
+
+    }
+
+}
+/* ==========================================================
+   SUBJECT GRID
+========================================================== */
+
+.subject-grid{
+
+    display:grid;
+
+    grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
+
+    gap:28px;
+
+    margin-top:35px;
+
+}
+
+/* ==========================================================
+   SUBJECT CARD
+========================================================== */
+
+.subject-card{
+
+    background:#ffffff;
+
+    border-radius:22px;
+
+    padding:30px;
+
+    text-align:center;
+
+    box-shadow:0 12px 28px rgba(0,0,0,.08);
+
+    transition:all .4s ease;
+
+    position:relative;
+
+    overflow:hidden;
+
+    cursor:pointer;
+
+    opacity:0;
+
+    transform:translateY(40px);
+
+    animation:cardAppear .8s forwards;
+
+}
+
+.subject-card:nth-child(1){
+
+    animation-delay:.1s;
+
+}
+
+.subject-card:nth-child(2){
+
+    animation-delay:.2s;
+
+}
+
+.subject-card:nth-child(3){
+
+    animation-delay:.3s;
+
+}
+
+.subject-card:nth-child(4){
+
+    animation-delay:.4s;
+
+}
+
+.subject-card:nth-child(5){
+
+    animation-delay:.5s;
+
+}
+
+.subject-card:nth-child(6){
+
+    animation-delay:.6s;
+
+}
+
+/* ==========================================================
+   CARD HOVER
+========================================================== */
+
+.subject-card:hover{
+
+    transform:translateY(-12px);
+
+    box-shadow:0 22px 45px rgba(67, 56, 202, .20);
+
+}
+
+/* Brand Purple Glow */
+
+.subject-card::before{
+
+    content:"";
+
+    position:absolute;
+
+    top:0;
+
+    left:-100%;
+
+    width:100%;
+
+    height:5px;
+
+    background:#4338CA;
+
+    transition:.5s;
+
+}
+
+.subject-card:hover::before{
+
+    left:0;
+
+}
+
+/* ==========================================================
+   ICON
+========================================================== */
+
+.subject-icon{
+
+    width:80px;
+
+    height:80px;
+
+    margin:auto;
+
+    border-radius:50%;
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+    font-size:34px;
+
+    margin-bottom:20px;
+
+    transition:.4s;
+
+}
+
+.subject-card:hover .subject-icon{
+
+    transform:rotate(10deg) scale(1.1);
+
+}
+
+.subject-icon.purple{
+
+    background:#edeaff;
+
+    color:#4338CA;
+
+}
+
+.subject-icon.blue{
+
+    background:#e9f2ff;
+
+    color:#2563eb;
+
+}
+
+.subject-icon.green{
+
+    background:#eafcf0;
+
+    color:#16a34a;
+
+}
+
+.subject-icon.orange{
+
+    background:#fff2e8;
+
+    color:#f97316;
+
+}
+
+.subject-icon.red{
+
+    background:#ffeaea;
+
+    color:#dc2626;
+
+}
+
+/* ==========================================================
+   TITLE
+========================================================== */
+
+.subject-card h3{
+
+    font-size:24px;
+
+    margin-bottom:12px;
+
+    color:#2d3436;
+
+    font-weight:700;
+
+}
+
+.subject-card p{
+
+    color:#777;
+
+    line-height:1.7;
+
+    min-height:55px;
+
+    margin-bottom:18px;
+
+}
+
+/* ==========================================================
+   BADGE
+========================================================== */
+
+.badge{
+
+    display:inline-block;
+
+    padding:8px 18px;
+
+    border-radius:25px;
+
+    font-size:13px;
+
+    font-weight:600;
+
+    color:#fff;
+
+}
+
+.badge.beginner{
+
+    background:#22c55e;
+
+}
+
+.badge.intermediate{
+
+    background:#f59e0b;
+
+}
+
+.badge.advanced{
+
+    background:#ef4444;
+
+}
+
+/* ==========================================================
+   PROGRESS BAR
+========================================================== */
+
+.progress{
+
+    height:10px;
+
+    background:#ececec;
+
+    border-radius:30px;
+
+    overflow:hidden;
+
+    margin-top:18px;
+
+}
+
+.progress-bar{
+
+    background:linear-gradient(90deg,#4338CA,#818CF8);
+
+    border-radius:30px;
+
+    animation:progressMove 2s ease;
+
+}
+
+@keyframes progressMove{
+
+    from{
+
+        width:0;
+
+    }
+
+}
+
+/* ==========================================================
+   START QUIZ BUTTON
+========================================================== */
+
+.start-btn{
+
+    width:100%;
+
+    margin-top:22px;
+
+    background:#4338CA;
+
+    color:#fff;
+
+    border:none;
+
+    border-radius:12px;
+
+    padding:14px;
+
+    font-size:16px;
+
+    font-weight:600;
+
+    transition:.35s;
+
+}
+
+.start-btn:hover{
+
+    background:#312E81;
+
+    transform:translateY(-3px);
+
+    box-shadow:0 12px 25px rgba(67, 56, 202, .25);
+
+}
+
+.start-btn i{
+
+    margin-left:8px;
+
+}
+
+/* ==========================================================
+   CARD ANIMATION
+========================================================== */
+
+@keyframes cardAppear{
+
+    from{
+
+        opacity:0;
+
+        transform:translateY(40px);
+
+    }
+
+    to{
+
+        opacity:1;
+
+        transform:translateY(0);
+
+    }
+
+}
+/* ==========================================================
+   AI RECOMMENDATION CARD
+========================================================== */
+
+.recommendation-card{
+
+    background:#ffffff;
+
+    border-radius:22px;
+
+    padding:30px;
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+    box-shadow:0 12px 28px rgba(0,0,0,.08);
+
+    transition:.4s;
+
+    margin-top:35px;
+
+}
+
+.recommendation-card:hover{
+
+    transform:translateY(-8px);
+
+    box-shadow:0 20px 40px rgba(67, 56, 202, .18);
+
+}
+
+.recommendation-left{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:20px;
+
+}
+
+.recommend-icon{
+
+    width:75px;
+
+    height:75px;
+
+    border-radius:50%;
+
+    background:#edeaff;
+
+    color:#4338CA;
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+    font-size:32px;
+
+}
+
+.recommendation-left h3{
+
+    font-size:24px;
+
+    margin-bottom:8px;
+
+    color:#2d3436;
+
+}
+
+.recommendation-left p{
+
+    color:#666;
+
+    line-height:1.8;
+
+}
+
+.recommendation-btn{
+
+    background:#4338CA;
+
+    color:#fff;
+
+    border:none;
+
+    border-radius:12px;
+
+    padding:14px 26px;
+
+    font-size:15px;
+
+    font-weight:600;
+
+    transition:.35s;
+
+}
+
+.recommendation-btn:hover{
+
+    background:#312E81;
+
+    transform:scale(1.05);
+
+}
+
+
+/* ==========================================================
+   PROGRESS CARD
+========================================================== */
+
+.progress-card{
+
+    background:#ffffff;
+
+    border-radius:22px;
+
+    padding:30px;
+
+    text-align:center;
+
+    box-shadow:0 12px 28px rgba(0,0,0,.08);
+
+    transition:.4s;
+
+}
+
+.progress-card:hover{
+
+    transform:translateY(-8px);
+
+}
+
+.progress-card h4{
+
+    margin-bottom:25px;
+
+    color:#2d3436;
+
+}
+
+.progress-circle{
+
+    width:170px;
+
+    height:170px;
+
+    margin:auto;
+
+    border-radius:50%;
+
+    border:10px solid #4338CA;
+
+    display:flex;
+
+    flex-direction:column;
+
+    justify-content:center;
+
+    align-items:center;
+
+    background:#faf9ff;
+
+}
+
+.progress-circle h2{
+
+    color:#4338CA;
+
+    font-size:38px;
+
+    font-weight:700;
+
+}
+
+.progress-circle p{
+
+    color:#777;
+
+}
+
+
+/* ==========================================================
+   FOOTER
+========================================================== */
+
+.footer{
+
+    margin-top:45px;
+
+    text-align:center;
+
+    color:#888;
+
+    padding:20px;
+
+    font-size:14px;
+
+}
+
+
+/* ==========================================================
+   LOGOUT MODAL
+========================================================== */
+
+.logout-modal{
+
+    position:fixed;
+
+    inset:0;
+
+    background:rgba(0,0,0,.55);
+
+    display:none;
+
+    justify-content:center;
+
+    align-items:center;
+
+    z-index:9999;
+
+}
+
+.logout-modal.active{
+
+    display:flex;
+
+}
+
+.logout-box{
+
+    width:420px;
+
+    background:#fff;
+
+    border-radius:20px;
+
+    padding:35px;
+
+    text-align:center;
+
+    animation:popup .3s ease;
+
+}
+
+@keyframes popup{
+
+    from{
+
+        transform:scale(.8);
+
+        opacity:0;
+
+    }
+
+    to{
+
+        transform:scale(1);
+
+        opacity:1;
+
+    }
+
+}
+
+.logout-icon{
+
+    width:80px;
+
+    height:80px;
+
+    border-radius:50%;
+
+    background:#4338CA;
+
+    color:#fff;
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+    margin:auto;
+
+    font-size:32px;
+
+}
+
+.logout-box h2{
+
+    margin:18px 0 10px;
+
+}
+
+.logout-box p{
+
+    color:#666;
+
+    line-height:1.8;
+
+}
+
+.logout-buttons{
+
+    display:flex;
+
+    justify-content:center;
+
+    gap:15px;
+
+    margin-top:25px;
+
+}
+
+.cancel-btn{
+
+    background:#e5e7eb;
+
+    border:none;
+
+    padding:12px 24px;
+
+    border-radius:10px;
+
+    cursor:pointer;
+
+}
+
+.confirm-btn{
+
+    background:#4338CA;
+
+    color:#fff;
+
+    text-decoration:none;
+
+    padding:12px 24px;
+
+    border-radius:10px;
+
+    transition:.3s;
+
+}
+
+.confirm-btn:hover{
+
+    background:#312E81;
+
+}
+
+
+/* ==========================================================
+   SCROLLBAR
+========================================================== */
+
+::-webkit-scrollbar{
+
+    width:8px;
+
+}
+
+::-webkit-scrollbar-thumb{
+
+    background:#4338CA;
+
+    border-radius:20px;
+
+}
+
+::-webkit-scrollbar-track{
+
+    background:#ececec;
+
+}
+
+
+/* ==========================================================
+   RESPONSIVE
+========================================================== */
+
+@media(max-width:1200px){
+
+    .hero{
+
+        flex-direction:column;
+
+        text-align:center;
+
+        gap:35px;
+
+    }
+
+    .hero-text{
+
+        width:100%;
+
+    }
+
+    .hero-image{
+
+        width:100%;
+
+    }
+
+    .recommendation-card{
+
+        flex-direction:column;
+
+        gap:25px;
+
+        text-align:center;
+
+    }
+
+}
+
+@media(max-width:992px){
+
+    .dashboard{
+
+        flex-direction:column;
+
+    }
+
+    .sidebar{
+
+        width:100%;
+
+        height:auto;
+
+        position:relative;
+
+    }
+
+}
+
+@media(max-width:768px){
+
+    .topbar{
+
+        flex-direction:column;
+
+        gap:20px;
+
+    }
+
+    .search-box{
+
+        width:100%;
+
+    }
+
+    .profile{
+
+        width:100%;
+
+        justify-content:center;
+
+    }
+
+    .recommendation-left{
+
+        flex-direction:column;
+
+        text-align:center;
+
+    }
+
+}
+
+@media(max-width:576px){
+
+    .main-content{
+
+        padding:20px;
+
+    }
+
+    .hero{
+
+        padding:25px;
+
+    }
+
+    .hero-text h1{
+
+        font-size:30px;
+
+    }
+
+    .logout-box{
+
+        width:92%;
+
+    }
+
+    .logout-buttons{
+
+        flex-direction:column;
+
+    }
+
+    .confirm-btn,
+
+    .cancel-btn{
+
+        width:100%;
+
+    }
+
+}

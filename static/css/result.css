@@ -1,0 +1,998 @@
+/* =====================================================
+   Global
+===================================================== */
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+body{
+    font-family:'Poppins',sans-serif;
+    background:#f5f7ff;
+    display:flex;
+    min-height:100vh;
+}
+
+ul{
+    list-style:none;
+}
+
+a{
+    text-decoration:none;
+}
+.sidebar{
+    position:fixed;
+    left:0;
+    top:0;
+    width:280px;
+    height:100vh;
+    background:#fff;
+    padding:30px 22px;
+    display:flex;
+    flex-direction:column;
+    justify-content:space-between;
+    box-shadow:0 12px 30px rgba(0,0,0,.08);
+    z-index:999;
+}
+
+.menu{
+    list-style:none;
+    padding:0;
+    margin-top:35px;
+}
+
+.menu li{
+    margin-bottom:12px;
+}
+
+.menu li a{
+    display:flex;
+    align-items:center;
+    gap:12px;
+    padding:14px 18px;
+    border-radius:14px;
+    color:#555;
+    font-weight:500;
+    transition:.3s;
+}
+
+.menu li a:hover,
+.menu li.active a{
+    background:#5B4FFF;
+    color:#fff;
+}
+
+.logo{
+    display:flex;
+    align-items:center;
+    gap:12px;
+}
+
+.logo i{
+    font-size:30px;
+    color:#5B4FFF;
+}
+
+.logo h3{
+    margin:0;
+    font-size:26px;
+}
+
+.logo span{
+    color:#777;
+}
+
+/* =====================================================
+   Dashboard Layout
+===================================================== */
+
+.dashboard{
+    display:flex;
+    min-height:100vh;
+}
+
+.main-content{
+    flex:1;
+    margin-left:280px; /* FIXED: Sidebar width ke barabar margin add kiya hai taake content overlapping na ho */
+    padding:30px;
+    overflow-x:hidden;
+}
+
+/* =====================================================
+   Topbar
+===================================================== */
+
+.topbar{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    margin-bottom:30px;
+}
+
+.topbar h2{
+    font-size:30px;
+    font-weight:700;
+    color:#222;
+}
+
+.topbar p{
+    color:#6b7280;
+    margin-top:4px;
+}
+
+.user-box{
+    display:flex;
+    align-items:center;
+    gap:12px;
+    background:#fff;
+    padding:12px 18px;
+    border-radius:14px;
+    box-shadow:0 8px 25px rgba(0,0,0,.05);
+}
+
+.user-box i{
+    font-size:28px;
+    color:#4f46e5;
+}
+
+/* =====================================================
+   Hero Section
+===================================================== */
+
+.hero-result{
+
+    margin-top:10px;
+
+    background:linear-gradient(
+        135deg,
+        #4F46E5,
+        #7C3AED
+    );
+
+    border-radius:25px;
+
+    padding:45px;
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+    color:white;
+
+    box-shadow:0 15px 40px rgba(79,70,229,.18);
+
+    margin-bottom:35px;
+
+}
+
+.hero-left{
+
+    width:60%;
+
+}
+
+.hero-tag{
+
+    display:inline-flex;
+
+    align-items:center;
+
+    gap:8px;
+
+    background:rgba(255,255,255,.18);
+
+    padding:10px 18px;
+
+    border-radius:40px;
+
+    font-size:14px;
+
+    margin-bottom:20px;
+
+}
+
+.hero-left h1{
+
+    font-size:42px;
+
+    font-weight:700;
+
+    margin-bottom:15px;
+
+}
+
+.hero-left p{
+
+    font-size:15px;
+
+    line-height:1.8;
+
+    opacity:.95;
+
+}
+
+.hero-right{
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+}
+
+/* =====================================================
+   Percentage Circle
+===================================================== */
+
+.score-circle{
+
+    width:190px;
+
+    height:190px;
+
+    border-radius:50%;
+
+    background:white;
+
+    color:#4F46E5;
+
+    display:flex;
+
+    flex-direction:column;
+
+    justify-content:center;
+
+    align-items:center;
+
+    box-shadow:0 20px 40px rgba(0,0,0,.12);
+
+}
+
+.score-circle h1{
+
+    font-size:52px;
+
+    font-weight:700;
+
+    margin-bottom:8px;
+
+}
+
+.score-circle span{
+
+    color:#64748b;
+
+    font-size:15px;
+
+}
+/* =====================================================
+   Result Statistics Cards
+===================================================== */
+
+.cards-grid{
+
+    display:grid;
+
+    grid-template-columns:repeat(4,1fr);
+
+    gap:22px;
+
+    margin-bottom:35px;
+
+}
+
+.result-card{
+
+    background:#fff;
+
+    border-radius:22px;
+
+    padding:28px;
+
+    text-align:center;
+
+    transition:.35s;
+
+    box-shadow:0 8px 25px rgba(0,0,0,.05);
+
+}
+
+.result-card:hover{
+
+    transform:translateY(-6px);
+
+    box-shadow:0 18px 35px rgba(79,70,229,.12);
+
+}
+
+.result-card h4{
+
+    margin:18px 0 8px;
+
+    font-size:16px;
+
+    color:#64748b;
+
+    font-weight:500;
+
+}
+
+.result-card h2{
+
+    font-size:30px;
+
+    font-weight:700;
+
+    color:#1E293B;
+
+}
+
+.result-card p{
+
+    margin-top:8px;
+
+    color:#94A3B8;
+
+    font-size:14px;
+
+}
+
+/* =====================================================
+   Card Icons
+===================================================== */
+
+.card-icon{
+
+    width:65px;
+
+    height:65px;
+
+    border-radius:18px;
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+    margin:auto;
+
+    font-size:24px;
+
+}
+
+.card-icon.blue{
+
+    background:#EEF4FF;
+
+    color:#2563EB;
+
+}
+
+.card-icon.purple{
+
+    background:#F3E8FF;
+
+    color:#7C3AED;
+
+}
+
+.card-icon.orange{
+
+    background:#FFF7ED;
+
+    color:#F97316;
+
+}
+
+.card-icon.green{
+
+    background:#ECFDF5;
+
+    color:#10B981;
+
+}
+
+/* =====================================================
+   AI Analysis Section
+===================================================== */
+
+.analysis-section{
+
+    margin-top:15px;
+
+    margin-bottom:35px;
+
+}
+
+.analysis-card{
+
+    background:#fff;
+
+    border-radius:24px;
+
+    padding:35px;
+
+    box-shadow:0 8px 25px rgba(0,0,0,.05);
+
+}
+
+.analysis-header{
+
+    margin-bottom:28px;
+
+}
+
+.analysis-header h3{
+
+    font-size:24px;
+
+    font-weight:700;
+
+    color:#1E293B;
+
+    display:flex;
+
+    align-items:center;
+
+    gap:12px;
+
+}
+
+.analysis-header i{
+
+    color:#4F46E5;
+
+}
+
+/* =====================================================
+   AI Level Box
+===================================================== */
+
+.level-box{
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+    gap:25px;
+
+    margin-bottom:30px;
+
+}
+
+.old-level,
+
+.new-level{
+
+    flex:1;
+
+    background:#F8FAFC;
+
+    border-radius:18px;
+
+    padding:30px;
+
+    text-align:center;
+
+    transition:.3s;
+
+}
+
+.old-level:hover,
+
+.new-level:hover{
+
+    transform:translateY(-4px);
+
+}
+
+.old-level span,
+
+.new-level span{
+
+    color:#94A3B8;
+
+    font-size:14px;
+
+}
+
+.old-level h2,
+
+.new-level h2{
+
+    margin-top:10px;
+
+    font-size:30px;
+
+    font-weight:700;
+
+    color:#4F46E5;
+
+}
+
+.arrow-box{
+
+    width:70px;
+
+    height:70px;
+
+    border-radius:50%;
+
+    background:#EEF2FF;
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+    color:#4F46E5;
+
+    font-size:28px;
+
+}
+
+/* =====================================================
+   Progress Bar
+===================================================== */
+
+.progress-area{
+
+    margin-top:15px;
+
+}
+
+.progress-title{
+
+    display:flex;
+
+    justify-content:space-between;
+
+    margin-bottom:12px;
+
+    font-weight:600;
+
+    color:#334155;
+
+}
+
+.progress{
+
+    height:16px;
+
+    border-radius:30px;
+
+    background:#E2E8F0;
+
+    overflow:hidden;
+
+}
+
+.progress-bar{
+
+    width:0;
+
+    height:100%;
+
+    border-radius:30px;
+
+    background:linear-gradient(
+        90deg,
+        #4F46E5,
+        #7C3AED
+    );
+
+    transition:1.5s ease;
+
+}
+/* =====================================================
+   Recommendation Section
+===================================================== */
+
+.recommendation-grid{
+    display:grid;
+    grid-template-columns:2fr 1fr;
+    gap:25px;
+    margin-bottom:35px;
+}
+
+.recommendation-card,
+.summary-card{
+
+    background:#fff;
+
+    border-radius:22px;
+
+    padding:28px;
+
+    box-shadow:0 8px 25px rgba(0,0,0,.05);
+
+}
+
+/* ========================================= */
+
+.section-title{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:12px;
+
+    margin-bottom:22px;
+
+}
+
+.section-title i{
+
+    color:#4F46E5;
+
+    font-size:22px;
+
+}
+
+.section-title h3{
+
+    font-size:22px;
+
+    font-weight:700;
+
+    color:#1E293B;
+
+}
+
+/* ========================================= */
+
+.recommendation{
+
+    display:flex;
+
+    align-items:flex-start;
+
+    gap:18px;
+
+    padding:22px;
+
+    border-radius:18px;
+
+}
+
+.recommendation i{
+
+    font-size:30px;
+
+}
+
+.recommendation h4{
+
+    margin-bottom:8px;
+
+    font-size:20px;
+
+    font-weight:700;
+
+}
+
+.recommendation p{
+
+    line-height:1.7;
+
+    color:#475569;
+
+}
+
+/* ========================================= */
+
+.success{
+
+    background:#ECFDF5;
+
+}
+
+.success i{
+
+    color:#10B981;
+
+}
+
+.success h4{
+
+    color:#059669;
+
+}
+
+/* ========================================= */
+
+.warning{
+
+    background:#FFF7ED;
+
+}
+
+.warning i{
+
+    color:#F97316;
+
+}
+
+.warning h4{
+
+    color:#EA580C;
+
+}
+
+/* ========================================= */
+
+.danger{
+
+    background:#FEF2F2;
+
+}
+
+.danger i{
+
+    color:#EF4444;
+
+}
+
+.danger h4{
+
+    color:#DC2626;
+
+}
+
+/* =====================================================
+   Summary Card
+===================================================== */
+
+.summary-item{
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+    padding:16px 0;
+
+    border-bottom:1px solid #EEF2F7;
+
+}
+
+.summary-item:last-child{
+
+    border-bottom:none;
+
+}
+
+.summary-item span{
+
+    color:#64748B;
+
+    font-size:15px;
+
+}
+
+.summary-item strong{
+
+    color:#1E293B;
+
+    font-size:16px;
+
+    font-weight:700;
+
+}
+
+/* =====================================================
+   Buttons
+===================================================== */
+
+.action-buttons{
+
+    display:flex;
+
+    justify-content:center;
+
+    gap:20px;
+
+    margin-top:35px;
+
+    margin-bottom:40px;
+
+}
+
+.action-buttons .btn{
+
+    padding:14px 32px;
+
+    border-radius:14px;
+
+    font-weight:600;
+
+    transition:.35s;
+
+    box-shadow:0 10px 25px rgba(0,0,0,.08);
+
+}
+
+.action-buttons .btn i{
+
+    margin-right:8px;
+
+}
+
+.action-buttons .btn:hover{
+
+    transform:translateY(-4px);
+
+}
+
+/* =====================================================
+   Fade Animation
+===================================================== */
+
+.hero-result,
+.result-card,
+.analysis-card,
+.recommendation-card,
+.summary-card{
+
+    animation:fadeUp .8s ease;
+
+}
+
+@keyframes fadeUp{
+
+    from{
+
+        opacity:0;
+
+        transform:translateY(30px);
+
+    }
+
+    to{
+
+        opacity:1;
+
+        transform:translateY(0);
+
+    }
+
+}
+
+/* =====================================================
+   Responsive
+===================================================== */
+
+@media(max-width:1200px){
+
+.cards-grid{
+
+grid-template-columns:repeat(2,1fr);
+
+}
+
+}
+
+@media(max-width:992px){
+
+.hero-result{
+
+flex-direction:column;
+
+text-align:center;
+
+gap:30px;
+
+}
+
+.hero-left{
+
+width:100%;
+
+}
+
+.recommendation-grid{
+
+grid-template-columns:1fr;
+
+}
+
+.level-box{
+
+flex-direction:column;
+
+}
+
+}
+
+@media(max-width:768px){
+
+.main-content{
+    margin-left: 0; /* Mobile screen par sidebar override handle karne ke liye margin 0 */
+    padding:20px;
+
+}
+
+.cards-grid{
+
+grid-template-columns:1fr;
+
+}
+
+.action-buttons{
+
+flex-direction:column;
+
+}
+
+.action-buttons .btn{
+
+width:100%;
+
+}
+
+.topbar{
+
+flex-direction:column;
+
+align-items:flex-start;
+
+gap:15px;
+
+}
+
+.score-circle{
+
+width:160px;
+
+height:160px;
+
+}
+
+.hero-left h1{
+
+font-size:34px;
+
+}
+
+}
+
+@media(max-width:500px){
+
+.hero-result{
+
+padding:25px;
+
+}
+
+.result-card{
+
+padding:20px;
+
+}
+
+.analysis-card{
+
+padding:20px;
+
+}
+
+.recommendation-card,
+
+.summary-card{
+
+padding:20px;
+
+}
+
+}
