@@ -8,7 +8,7 @@ from flask import (
     flash,
     jsonify
 )
-
+import os
 import mysql.connector
 import random
 import re
@@ -26,28 +26,17 @@ from ai.predictor import predict_level
 # ==========================================================
 
 app = Flask(__name__)
+app.secret_key = os.getenv("SECRET_KEY", "adaptive_quiz_secret_key_2026")
 
-app.secret_key = "adaptive_quiz_secret_key_2026"
-
-
-# ==========================================================
-# Database Connection
-# ==========================================================
 
 def get_db_connection():
-
     return mysql.connector.connect(
-
-        host="localhost",
-
-        user="M_Hamza",
-
-        password="Hamza@22",
-
-        database="adaptive_quiz"
-
+        host=os.getenv("DB_HOST", "localhost"),
+        user=os.getenv("DB_USER", "M_Hamza"),
+        password=os.getenv("DB_PASSWORD", "Hamza@22"),
+        database=os.getenv("DB_NAME", "adaptive_quiz"),
+        port=int(os.getenv("DB_PORT", 3306))
     )
-
 
 # ==========================================================
 # Home
